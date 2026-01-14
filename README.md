@@ -1,36 +1,41 @@
-# 🤖 WhatsApp Automation Bot (Unofficial)
+# 🤖 WhatsApp Web Automation Bot (Unofficial API)
 
-> ⚠️ **Disclaimer**  
-> This project does **NOT** use the official WhatsApp API.  
-> It automates **WhatsApp Web** via browser interaction and is intended **for educational, experimental, or internal business purposes only**.  
-> Use responsibly and at your own risk.
+> Python + Selenium automation for WhatsApp Web with a PHP & MySQL backend.
+
+⚠️ **Disclaimer**  
+This project does **NOT** use the official WhatsApp API.  
+It automates WhatsApp Web through browser interaction and is intended for **educational, experimental, or internal business use only**.  
+Use responsibly and **at your own risk** — WhatsApp may restrict or ban automated accounts.
 
 ---
 
 ## 📌 Overview
 
-This project is a **WhatsApp automation bot** built with **Python + Selenium**, integrated with a **PHP backend** and **MySQL**, running locally via **XAMPP**.
+This project is an **unofficial WhatsApp Web automation bot** built with **Python (Selenium)** and integrated with a **PHP backend** and **MySQL database**, running locally via **XAMPP**.
 
-The bot monitors unread messages on **WhatsApp Web**, captures incoming messages, sends them to a local PHP endpoint for processing, and automatically replies to the user — all without using the official WhatsApp API.
+The bot monitors unread messages on WhatsApp Web, captures incoming messages, sends them to a PHP endpoint for processing, and automatically replies — all without using the official WhatsApp API.
+
+This project was developed as a **learning-by-building experiment**, combining automation, backend integration, browser-based interaction, and real-world problem solving.
 
 ---
 
-## 🧠 How It Works
+## 🧠 How the Bot Works
 
-1. **Python (Selenium)**  
-   - Opens WhatsApp Web using Google Chrome  
-   - Detects unread messages via DOM elements  
-   - Reads the last received message  
-   - Sends message data to a local PHP server  
+### Python (Selenium)
+- Opens WhatsApp Web using Google Chrome
+- Detects unread messages via DOM selectors
+- Opens the most recent unread conversation
+- Extracts the last received message
+- Sends message data to a PHP backend via HTTP
 
-2. **PHP (index.php)**  
-   - Receives data via HTTP (`GET`)  
-   - Processes the message using database logic  
-   - Returns a response string  
+### PHP Backend
+- Receives message data via HTTP (GET)
+- Processes logic using MySQL
+- Returns a response string
 
-3. **Python Bot**  
-   - Receives the PHP response  
-   - Automatically sends the reply back on WhatsApp  
+### Automated Response
+- Python receives the backend response
+- Automatically sends the reply back through WhatsApp Web
 
 ---
 
@@ -42,139 +47,188 @@ The bot monitors unread messages on **WhatsApp Web**, captures incoming messages
 - **PHP 7+**
 - **MySQL**
 - **XAMPP (Apache + MySQL)**
+- **Requests (Python HTTP library)**
 - **WhatsApp Web**
-- **Requests library** for HTTP communication
 
 ---
 
 ## 📂 Project Structure
 
-```bash
 .
-├── whatsapp_bot.py     # Main Python bot (Selenium automation)
-├── index.php           # PHP backend (message processing)
+├── whatsapp_bot.py # Main Python automation script
+├── index.php # PHP backend (message processing)
 ├── storage/
-│   └── whatsapp_session/ # Chrome session files to maintain WhatsApp login
+│ └── whatsapp_session/ # Chrome session files (keeps WhatsApp logged in)
+├── requirements.txt
 └── README.md
 
-⚙️ Installation & Setup
-1. System Requirements
+yaml
+Copiar código
 
-Windows 10 or newer
+---
 
-Python 3.10+
+## ⚙️ Installation and Execution Guide
 
-Google Chrome installed
+### 1. System Requirements
 
-XAMPP (Apache + MySQL)
+- Windows 10 or newer
+- Python 3.10 or newer
+- Google Chrome installed
+- XAMPP (Apache and MySQL)
 
-2. Python Dependencies
+---
 
-Ensure you have a requirements.txt in the project root:
+### 2. Dependency Installation
+
+Ensure the file `requirements.txt` exists in the project root with the following content:
 
 selenium>=4.10.0
 requests>=2.31.0
 
+sql
+Copiar código
 
-Install dependencies:
+Install all dependencies using:
 
 pip install -r requirements.txt
 
-3. PHP Backend
+yaml
+Copiar código
 
-Start XAMPP
+---
 
-Enable Apache and MySQL
+### 3. Backend Configuration (PHP)
 
-Place index.php in:
+- Start **XAMPP**
+- Enable **Apache** and **MySQL**
+- Place the PHP backend file at:
 
 C:\xampp\htdocs\bot\index.php
 
+yaml
+Copiar código
 
-Do not modify the PHP communication logic unless necessary.
+- The bot communicates with the PHP backend via HTTP
+- **DO NOT modify the PHP communication logic**
 
-4. MySQL Database Setup
+---
 
-Before running the bot, create the MySQL database and tables required by the PHP backend:
+### 4. MySQL Database Setup
 
-Open phpMyAdmin (http://localhost/phpmyadmin/) or MySQL CLI.
+Before running the bot, create the MySQL database and required tables.
 
-Create the database:
+1. Open **phpMyAdmin** (`http://localhost/phpmyadmin/`) or MySQL CLI  
+2. Create the database:
 
 CREATE DATABASE bot;
 
+markdown
+Copiar código
 
-Create the usuario table:
+3. Create the `usuario` table:
 
 CREATE TABLE usuario (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    telefone VARCHAR(20) NOT NULL,
-    status INT DEFAULT 1
+id INT AUTO_INCREMENT PRIMARY KEY,
+telefone VARCHAR(20) NOT NULL,
+status INT DEFAULT 1
 );
 
+markdown
+Copiar código
 
-Create the historico table:
+4. Create the `historico` table:
 
 CREATE TABLE historico (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    telefone VARCHAR(20),
-    msg_cliente TEXT,
-    msg_bot TEXT,
-    data DATETIME
+id INT AUTO_INCREMENT PRIMARY KEY,
+telefone VARCHAR(20),
+msg_cliente TEXT,
+msg_bot TEXT,
+data DATETIME
 );
 
+yaml
+Copiar código
 
-⚠️ Ensure MySQL is running and the tables exist before starting the bot.
+⚠️ Make sure the MySQL service is running and the database/tables exist before running the bot.
 
-5. Session Storage
+---
 
-The bot stores the WhatsApp Web session locally to avoid scanning the QR code every time.
+### 5. Session Storage
 
-Session folder: storage/whatsapp_session
+- The WhatsApp Web session is stored locally to avoid repeated QR Code scans
+- Session directory used by this bot:
 
-6. First Execution
+storage/whatsapp_session
 
-Run the bot:
+yaml
+Copiar código
+
+Do not delete this folder unless you want to reset the WhatsApp login.
+
+---
+
+### 6. First Execution
+
+Run the script:
 
 python whatsapp_bot.py
 
+yaml
+Copiar código
 
-Scan the QR Code on WhatsApp Web if prompted.
+- Scan the WhatsApp Web QR Code if requested
+- Keep the browser open while the bot is running
 
-Keep the browser open while the bot is running.
+---
 
-📝 Notes & Best Practices
+## 🔄 Bot Operation
 
-Do not close the browser while the bot is running.
+Once running, the bot will:
 
-Do not share your WhatsApp credentials; the bot only uses your current session.
+- Automatically monitor unread WhatsApp messages
+- Open the most recent unread conversation
+- Capture the incoming message
+- Send the message to the PHP backend
+- Receive and send automated responses
+- Run continuously until manually stopped
 
-Respect WhatsApp's policies — this is intended for internal or experimental use only.
+---
 
-Logs are printed to the console for monitoring activity.
+## 📝 Important Notes
 
-🔄 Bot Operation
+- This bot uses **WhatsApp Web (non-official API)**
+- Automating WhatsApp Web may violate WhatsApp policies
+- Designed for **educational, experimental, or internal business use**
+- Do **not** close the browser while the bot is running
+- WhatsApp Web DOM changes may require selector updates
 
-Automatically monitors unread WhatsApp messages
+---
 
-Opens the most recent unread conversation
+## ⚡ Troubleshooting
 
-Sends messages to the PHP backend for processing
+- **Unread messages not detected**  
+  Check the unread message badge class in the Python script
 
-Sends automated replies back to the user
+- **Messages not sent**  
+  Verify the message input selector
 
-⚡ Troubleshooting
+- **Backend errors**  
+  Ensure Apache and MySQL are running  
+  Confirm database and tables exist
 
-If messages are not being detected, check the unread message class in whatsapp_bot.py (UNREAD_BADGE_CLASS) — WhatsApp Web DOM changes occasionally.
+- **Browser issues**  
+  Ensure ChromeDriver matches your Chrome version
 
-Ensure MESSAGE_INPUT_SELECTOR matches the current WhatsApp Web input field.
+---
 
-Verify the MySQL database and tables exist and are accessible.
+## 👨‍💻 Author
 
-Make sure ChromeDriver is compatible with your Chrome version.
+**Rafael Moura**  
+Future Digital Engineer — Computer Engineering Student (UFPE / CIN)
 
-📌 Disclaimer
+- Python Developer  
+- Networking & Cybersecurity Background  
+- Content Creator — **Fala Binário**
 
-This bot does not use the official WhatsApp API.
-Automating WhatsApp Web carries risk of account restriction.
-Use responsibly and at your own risk.
+🔗 All social links available via **Linktree**  
+💡 Feel free to explore, collaborate, or leave suggestions!
