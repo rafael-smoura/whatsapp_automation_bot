@@ -1,137 +1,90 @@
-# 🤖 WhatsApp Web Automation Bot (Unofficial API)
 
-> Python + Selenium automation for WhatsApp Web with a PHP & MySQL backend.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fe96ecfa-36ee-488d-b98e-988e27340091" alt="WhatsApp Automation Bot" width="180">
+</p>
 
-⚠️ **Disclaimer**  
-This project does **NOT** use the official WhatsApp API.  
-It automates WhatsApp Web through browser interaction and is intended for **educational, experimental, or internal business use only**.  
-Use responsibly and **at your own risk** — WhatsApp may restrict or ban automated accounts.
+<h1 align="center">
+  WhatsApp Web Automation Bot
+</h1>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/language-Python-blue?style=flat-square&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/backend-PHP%20%7C%20MySQL-purple?style=flat-square&logo=php&logoColor=white" alt="PHP MySQL" />
+  <img src="https://img.shields.io/badge/automation-Selenium-green?style=flat-square&logo=selenium&logoColor=white" alt="Selenium" />
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="MIT License" />
+</p>
 
-## 📌 Overview
-
-This project is an **unofficial WhatsApp Web automation bot** built with **Python (Selenium)** and integrated with a **PHP backend** and **MySQL database**, running locally via **XAMPP**.
-
-The bot monitors unread messages on WhatsApp Web, captures incoming messages, sends them to a PHP endpoint for processing, and automatically replies — all without using the official WhatsApp API.
-
-This project was developed as a **learning-by-building experiment**, focusing on automation, backend integration, browser-based interaction, and real-world problem solving.
-
----
-
-## 🧠 How It Works
-
-### Python (Selenium)
-- Opens WhatsApp Web using Google Chrome  
-- Detects unread messages using DOM selectors  
-- Opens the most recent unread conversation  
-- Extracts the last received message  
-- Sends message data to the PHP backend via HTTP  
-
-### PHP Backend
-- Receives message data via HTTP (GET)  
-- Processes logic using MySQL  
-- Returns a response string  
-
-### Automated Response
-- Python receives the backend response  
-- Automatically sends the reply back through WhatsApp Web  
+> ⚠️ **Disclaimer:** This project does **NOT** use the official WhatsApp API. It automates WhatsApp Web through browser interaction and is intended for **educational, experimental, or internal business use only**. Use responsibly and at your own risk — WhatsApp may restrict or ban automated accounts.
 
 ---
 
-## 🛠️ Technologies Used
+## 🎯 The Motivation Behind the Project
 
-- Python 3.10+  
-- Selenium WebDriver  
-- Google Chrome  
-- PHP 7+  
-- MySQL  
-- XAMPP (Apache + MySQL)  
-- Requests (Python HTTP library)  
-- WhatsApp Web  
+Customer service automation is one of the most demanded solutions in the modern market, yet access to official business communication APIs often comes with high monthly costs and strict bureaucratic approval barriers. For small businesses, independent developers, or students trying to prototype an interactive system, these restrictions make experimentation nearly impossible.
+
+To bridge this gap and explore the boundaries of browser automation, I developed this unofficial WhatsApp Web bot. Built as a **learning-by-building experiment**, the project challenges the traditional limits of web scrapers by creating a fast, real-time bridge between a standard frontend web application and a traditional relational database infrastructure. It serves as a proof of concept showing how standard engineering tools can solve communication automation bottlenecks with zero budget.
 
 ---
 
-## 📂 Project Structure
+## 🚀 Features
 
-```
-.
-├── whatsapp_web_automation_bot.py          # Main Python automation script
-├── index.php                               # PHP backend (message processing)
-├── storage/
-│   └── whatsapp_session/                   # Chrome session files (keeps WhatsApp logged in)
-├── requirements.txt
-└── README.md
-```
+* **Real-time DOM Monitoring:** Leverages Selenium selectors to continuously listen to incoming unread message badges without polling crashes.
+* **Persistent Session Management:** Implements local Chrome profile caching (`whatsapp_session`) to bypass redundant, repetitive QR code authentication scans.
+* **Decoupled Architecture:** Communication relies on an independent backend pipeline, separating automation routines from heavy database CRUD queries.
+* **Full Conversation History:** Automatically logs incoming client queries and corresponding machine responses with precise timestamps.
 
 ---
 
-## ⚙️ Installation and Execution Guide
+## 🧰 Architecture & Components
 
-### 1. System Requirements
-
-- Windows 10 or newer  
-- Python 3.10 or newer  
-- Google Chrome installed  
-- XAMPP (Apache and MySQL)  
+<table width="100%">
+  <tr>
+    <td width="120px" align="center" style="border: none;">
+      <img src="https://skillicons.dev/icons?i=python,selenium" />
+    </td>
+    <td style="border: none; padding-left: 15px;">
+      <strong>Automation Engine (Python & Selenium):</strong> Handles browser runtime execution, orchestrates DOM state changes, extracts message payloads, and pushes string variables to HTTP endpoints via the <code>requests</code> library.
+    </td>
+  </tr>
+  <tr>
+    <td width="120px" align="center" style="border: none;">
+      <img src="https://skillicons.dev/icons?i=php,mysql" />
+    </td>
+    <td style="border: none; padding-left: 15px;">
+      <strong>Backend & Storage (PHP & MySQL via XAMPP):</strong> Implements simple, fast business-logic processing via Apache streams, tracking user interaction states and executing analytical sorting queries.
+    </td>
+  </tr>
+</table>
 
 ---
 
-### 2. Dependency Installation
+## 📦 How to Setup and Run
 
-Create a `requirements.txt` file in the project root with the following content:
-
-```
-selenium>=4.10.0
-requests>=2.31.0
-```
-
-Install all dependencies using:
-
-```
+### 1. Repository & Dependencies Setup
+Clone the repository and install the standard execution packages:
+```bash
+git clone [https://github.com/rafael-smoura/whatsapp-web-automation-bot.git](https://github.com/rafael-smoura/whatsapp-web-automation-bot.git)
+cd whatsapp-web-automation-bot
 pip install -r requirements.txt
 ```
 
----
-
-### 3. Backend Configuration (PHP)
-
-1. Start **XAMPP**  
-2. Enable **Apache** and **MySQL**  
-3. Place the PHP backend file at:
-
+## 2. XAMPP Backend Configuration
+Ensure XAMPP is active with Apache and MySQL instances running. Deploy the backend entry file to your local server root:
 ```
 C:\xampp\htdocs\bot\index.php
 ```
-
-The bot communicates with the PHP backend via HTTP.  
-**Do not modify the PHP communication logic unless strictly necessary.**
-
----
-
-### 4. MySQL Database Setup
-
-Before running the bot, create the MySQL database and required tables.
-
-Create the database:
-
+## 3. Database Schema Migration
+Run the following relational query stream inside your MySQL coordinator or phpMyAdmin environment to initialize core data tracking:
 ```
 CREATE DATABASE bot;
-```
+USE bot;
 
-Create the `usuario` table:
-
-```
 CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     telefone VARCHAR(20) NOT NULL,
     status INT DEFAULT 1
 );
-```
 
-Create the `historico` table:
-
-```
 CREATE TABLE historico (
     id INT AUTO_INCREMENT PRIMARY KEY,
     telefone VARCHAR(20),
@@ -140,86 +93,41 @@ CREATE TABLE historico (
     data DATETIME
 );
 ```
-
-⚠️ Ensure that the MySQL service is running and that the database and tables exist before starting the bot.
-
----
-
-### 5. Session Storage
-
-The WhatsApp Web session is stored locally to avoid repeated QR code scans.
-
-Session directory:
-
-```
-storage/whatsapp_session
-```
-
-Do not delete this folder unless you want to reset the WhatsApp login.
-
----
-
-### 6. First Execution
-
-Run the script:
-
+## 4. First Execution
+Launch the Python monitor controller:
 ```
 python whatsapp_web_automation_bot.py
 ```
+📲 Operational Note: Scan the WhatsApp Web QR code on the browser window that pops up. Keep the automated Chrome window open during runtime to preserve active session listeners.
 
-- Scan the WhatsApp Web QR code if prompted  
-- Keep the browser open while the bot is running  
+### 🔮 Future Roadmap
 
----
+The system is engineered as an adaptable base framework. Future releases will focus on reliability and feature-parity with commercial apps:
 
-## 🔄 Bot Operation
-
-Once running, the bot will:
-
-- Monitor unread WhatsApp messages automatically  
-- Open the most recent unread conversation  
-- Capture incoming messages  
-- Send messages to the PHP backend  
-- Receive and send automated responses  
-- Run continuously until manually stopped  
+- [ ] **Dynamic XPath Mutation Shield:** Implement fallback element-finding loops to mitigate breaking runtime errors caused by unexpected layout deployments on WhatsApp Web.
+- [ ] **Multi-Agent Router:** Expand the PHP handler to route user tickets based on keyword triggers, enabling multiple bot characters to respond.
+- [ ] **Media Attachment Support:** Integrate automation steps to detect, download, and reply using image attachments, audio files, and structural PDFs.
 
 ---
 
-## 📝 Important Notes
+## 🌎 Connect With Me
 
-- This bot uses **WhatsApp Web (non-official API)**  
-- Automating WhatsApp Web may violate WhatsApp policies  
-- Intended for **educational, experimental, or internal business use**  
-- Do **not** close the browser while the bot is running  
-- WhatsApp Web DOM changes may require selector updates  
-
----
-
-## ⚡ Troubleshooting
-
-- **Unread messages not detected**  
-  Check the unread message badge class in the Python script  
-
-- **Messages not sent**  
-  Verify the message input selector  
-
-- **Backend errors**  
-  Ensure Apache and MySQL are running  
-  Confirm that the database and tables exist  
-
-- **Browser issues**  
-  Ensure ChromeDriver matches your Chrome version  
+<p align="left">
+  <a href="https://linktr.ee/rafael.smoura.dev">
+    <img alt="Linktree" src="https://custom-icon-badges.demolab.com/badge/-Linktree-green?style=for-the-badge&logo=linktree&logoColor=white"/>
+  </a>&nbsp;
+  <a href="https://github.com/rafael-smoura">
+    <img alt="GitHub" src="https://custom-icon-badges.demolab.com/badge/-GitHub-black?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+</p>
 
 ---
 
-## 👨‍💻 Author
+<p align="center">
+  <b>💡 Developed with purpose.</b><br>
+  Engineering software means building solutions that resolve technical roadblocks while positively impacting human experiences.
+</p>
 
-**Rafael Moura**  
-Computer Engineering Student (UFPE / CIN)
-
-- Python Developer  
-- Networking & Cybersecurity Background  
-- Content Creator — **Fala Binário**  
-
-🔗 All social links available via ** [**Linktree**](https://linktr.ee/rafael.smoura.dev)**  
-💡 Feel free to explore, collaborate, or leave suggestions!
+<p align="center">
+  <sub>Animated icon by <a href="https://www.flaticon.com/free-animated-icons/email" title="email animated icons">Flaticon</a></sub>
+</p><img width="640" height="640" alt="chatbot" src="https://github.com/user-attachments/assets/5399ba55-69f9-45be-9b31-1ae9b2f3f40a" />
