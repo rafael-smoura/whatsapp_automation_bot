@@ -130,4 +130,4 @@ The system is engineered as an adaptable base framework. Future releases will fo
 
 <p align="center">
   <sub>Animated icon by <a href="https://www.flaticon.com/free-animated-icons/email" title="email animated icons">Flaticon</a></sub>
-</p><img width="640" height="640" alt="chatbot" src="https://github.com/user-attachments/assets/5399ba55-69f9-45be-9b31-1ae9b2f3f40a" />
+
