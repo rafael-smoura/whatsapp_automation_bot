@@ -1,6 +1,7 @@
 
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/fe96ecfa-36ee-488d-b98e-988e27340091" alt="WhatsApp Automation Bot" width="180">
+  <img src="https://github.com/user-attachments/assets/1cf21c90-3beb-4e5c-b320-3a1ff8f4d8be" alt="WhatsApp Automation Bot" width="180">
 </p>
 
 <h1 align="center">
